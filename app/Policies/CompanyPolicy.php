@@ -18,7 +18,7 @@ class CompanyPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->hasRole('admin');
     }
 
     /**
@@ -30,7 +30,7 @@ class CompanyPolicy
      */
     public function view(User $user, Company $company)
     {
-        //
+        return $user->hasRole('admin');
     }
 
     /**
@@ -41,7 +41,8 @@ class CompanyPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->hasRole('admin');
+
     }
 
     /**
@@ -53,7 +54,8 @@ class CompanyPolicy
      */
     public function update(User $user, Company $company)
     {
-        //
+        return $user->hasRole('admin');
+
     }
 
     /**
@@ -65,7 +67,8 @@ class CompanyPolicy
      */
     public function delete(User $user, Company $company)
     {
-        //
+        return $user->hasRole('admin');
+
     }
 
     /**
@@ -77,7 +80,8 @@ class CompanyPolicy
      */
     public function restore(User $user, Company $company)
     {
-        //
+        return $user->hasRole('admin');
+
     }
 
     /**
@@ -89,6 +93,7 @@ class CompanyPolicy
      */
     public function forceDelete(User $user, Company $company)
     {
-        //
+        return $user->hasRole('admin');
+
     }
 }
