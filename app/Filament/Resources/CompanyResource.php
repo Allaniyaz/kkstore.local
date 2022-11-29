@@ -27,7 +27,7 @@ class CompanyResource extends Resource
                     ->required(),
                 Forms\Components\TextInput::make('name')
                     ->required(),
-                Forms\Components\TextInput::make('description'),
+                Forms\Components\MarkdownEditor ::make('description'),
                 Forms\Components\Select::make('user_id')
                     ->relationship('user', 'name')
                     ->required()
@@ -40,13 +40,13 @@ class CompanyResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('logo'),
                 Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('description'),
                 Tables\Columns\TextColumn::make('user.name')
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
