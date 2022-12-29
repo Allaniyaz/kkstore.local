@@ -23,11 +23,13 @@ class CompanyResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('logo')
+                Forms\Components\FileUpload::make('logo')
+                    ->image()
+                    ->directory('companies')
                     ->required(),
                 Forms\Components\TextInput::make('name')
                     ->required(),
-                Forms\Components\MarkdownEditor ::make('description'),
+                Forms\Components\MarkdownEditor::make('description'),
                 Forms\Components\Select::make('user_id')
                     ->relationship('user', 'name')
                     ->required()
@@ -38,9 +40,11 @@ class CompanyResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('logo'),
-                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\ImageColumn::make('logo'),
+                Tables\Columns\TextColumn::make('name')
+                    ->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('user.name')
+                    ->sortable()->searchable()
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
