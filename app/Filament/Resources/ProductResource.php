@@ -24,20 +24,17 @@ class ProductResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Select::make('category_id')
-                    ->relationship('category', 'name')
-                    ->required(),
+                    ->relationship('category', 'name')->required(),
                 Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
+                    ->required()->maxLength(255),
                 Forms\Components\RichEditor::make('description')
-                    ->required()
-                    ->maxLength(65535),
+                    ->required()->maxLength(65535),
                 Forms\Components\MarkdownEditor::make('info')
                     ->maxLength(65535),
+                Forms\Components\TextInput::make('price')
+                    ->integer()->required(),
                 Forms\Components\FileUpload::make('images')
-                    ->image()
-                    ->multiple()
-                    ->directory('products')
+                    ->image()->multiple()->directory('products')
                     ->required(),
             ]);
     }
@@ -47,13 +44,13 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->sortable()
-                    ->searchable(),
+                    ->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('category.name')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
+                Tables\Columns\TextColumn::make('price')
                     ->sortable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()->sortable(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
