@@ -24,15 +24,14 @@ class CompanyResource extends Resource
         return $form
             ->schema([
                 Forms\Components\FileUpload::make('logo')
-                    ->image()
-                    ->directory('companies')
-                    ->required(),
+                    ->image()->directory('companies')->required(),
                 Forms\Components\TextInput::make('name')
                     ->required(),
                 Forms\Components\MarkdownEditor::make('description'),
                 Forms\Components\Select::make('user_id')
-                    ->relationship('user', 'name')
-                    ->required()
+                    ->relationship('user', 'name')->required(),
+                Forms\Components\TextInput::make('currency_rate')
+                    ->integer(),
             ]);
     }
 
@@ -44,7 +43,8 @@ class CompanyResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('user.name')
-                    ->sortable()->searchable()
+                    ->sortable()->searchable(),
+                Tables\Columns\TextColumn::make('currency_rate')
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
