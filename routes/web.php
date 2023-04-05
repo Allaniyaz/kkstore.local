@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,7 @@ use App\Http\Controllers\WebController;
 
 Route::get('/', [WebController::class, 'home'])->name('shop.home');
 Route::get('/shop-details', [WebController::class, 'shop_details'])->name('shop.details');
+Route::get('/product/show/{id}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/shop-grid', [WebController::class, 'shop_grid'])->name('shop.grid');
 Route::get('/shoping-cart', [WebController::class, 'shoping_cart'])->name('shop.cart');
 Route::get('/main', [WebController::class, 'main'])->name('main');

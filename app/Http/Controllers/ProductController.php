@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
@@ -42,12 +43,17 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param  integer $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($id)
     {
-        //
+        $data['categories'] = Category::all();
+        $data['product'] = Product::with('category')->find($id);
+        $data['related_products'] = Product::where('category_id', $data['product']->category_id)
+            ->whereNot('id', $data['product']->id)->limit(4)->get();
+        // dd($data);
+        return view('shop-details', $data);
     }
 
     /**
