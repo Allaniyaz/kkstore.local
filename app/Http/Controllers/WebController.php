@@ -12,6 +12,7 @@ class WebController extends Controller
     {
         $data['categories'] = Category::groupBy('name')->get();
         $data['products'] = Product::with('category')->get();
+        $data['latest'] = Product::with('category')->groupBy('category_id')->latest()->limit(12)->get();
 
         return view('home', $data);
     }
@@ -20,6 +21,7 @@ class WebController extends Controller
     {
         $data['categories'] = Category::groupBy('name')->get();
         $data['products'] = Product::with('category')->get();
+
 
         return view('shop-details', $data);
     }

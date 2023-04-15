@@ -36,7 +36,7 @@
                 <li><a href="{{ route('shop.grid') }}">Shop</a></li>
                 <li><a href="#">Pages</a>
                     <ul class="header__menu__dropdown">
-                        <li><a href="{{route('shop.details')}}">Shop Details</a></li>
+                        <li><a href="{{route('products.show', 1)}}">Shop Details</a></li>
                         <li><a href="{{route('shop.cart')}}">Shoping Cart</a></li>
                         <li><a href="{{route('shop.checkout')}}">Check Out</a></li>
                         <li><a href="{{route('blog.details')}}">Blog Details</a></li>
@@ -114,7 +114,7 @@
                             <li><a href="{{ route('shop.grid') }}">Shop</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
-                                    <li><a href="{{route('shop.details')}}">Shop Details</a></li>
+                                    <li><a href="{{route('products.show', 1)}}">Shop Details</a></li>
                                     <li><a href="{{route('shop.cart')}}">Shoping Cart</a></li>
                                     <li><a href="{{route('shop.checkout')}}">Check Out</a></li>
                                     <li><a href="{{route('blog.details')}}">Blog Details</a></li>
