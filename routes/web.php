@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,8 @@ Route::get('/blog', [WebController::class, 'blog'])->name('blog.index');
 Route::get('/checkout', [WebController::class, 'checkout'])->name('shop.checkout');
 Route::get('/contact', [WebController::class, 'contact'])->name('contact');
 Route::get('/welcome', [WebController::class, 'welcome'])->name('welcome');
+
+Route::get('/cart', [CartController::class, 'getItems'])->name('cart.get');
+Route::post('/cart/add', [CartController::class, 'addItem'])->name('cart.add');
+Route::post('/cart/update/{item}', [CartController::class, 'updateItem'])->name('cart.update');
+Route::post('/cart/remove/{item}', [CartController::class, 'removeItem'])->name('cart.remove');
